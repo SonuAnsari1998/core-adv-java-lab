@@ -5,7 +5,7 @@ public class Banck {
 		
 		Customer c1=new Customer();
 		c1.deposite(2000);
-		
+
 		
 	}
 }

@@ -13,7 +13,5 @@ public class Car {
 	public String toString() {
 		return "Car [" + (name != null ? "name=" + name + ", " : "") + "model=" + model + ", "
 				+ (engine != null ? "engine=" + engine : "") + "]";
-	}
-
-	
+	}	
 }
