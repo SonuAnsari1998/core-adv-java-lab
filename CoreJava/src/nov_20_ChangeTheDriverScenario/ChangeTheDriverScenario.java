@@ -18,6 +18,8 @@ public class ChangeTheDriverScenario {
 			sc.nextLine();
 			String newDName = sc.nextLine();
 			int newDAge = sc.nextInt();
+			
+			
 			Car car1 = new Car(brand, model, year, name, age);
 			Car car2 = new Car(car1);
 			car1.changeDriver(new Driver(newDName, newDAge));
