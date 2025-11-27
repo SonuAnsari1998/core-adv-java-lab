@@ -1,6 +1,7 @@
 package logical_question_on_first_mockTest_2;
 
 /*Logical Question on MOCK TEST
+ 
 ===========================
 1. Prime number
 [ A prime number is a natural number greater than 1 that has no positive divisors other 
