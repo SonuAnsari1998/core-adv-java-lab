@@ -36,5 +36,31 @@ d : 1
 public class FrequencyEachCharacter {
 	public static void main(String[] args) {
 		Scanner sc=new Scanner(System.in);
+		System.out.println("Enter String ::");
+		String str=sc.nextLine();
+		StringBuffer ste=new StringBuffer("Hello");
+		
+			char[] st1 = str.toCharArray();
+
+			//			more than 1 occurance
+			char[] st2 = new char[st1.length];
+			
+		for(int i=0; i<st1.length; i++)
+		{
+			if(st2[i]==1)
+			{
+				continue;
+			}
+			int c=1;
+			for(int j=i+1; j<st1.length; j++)
+			{
+				if(st1[i]==st1[j])
+				{
+					c++;
+					st2[j]=1;
+				}
+			}
+			System.out.println(st1[i]+" : "+c);
+		}
 	}
 }
