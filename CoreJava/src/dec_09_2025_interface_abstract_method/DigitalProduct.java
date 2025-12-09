@@ -1,5 +1,5 @@
 package dec_09_2025_interface_abstract_method;
-
+//
 public class DigitalProduct extends Product {
 	private String licenseKey;
 	private double uprice;
