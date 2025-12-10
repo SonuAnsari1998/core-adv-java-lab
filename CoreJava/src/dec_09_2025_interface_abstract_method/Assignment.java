@@ -1,6 +1,6 @@
 package dec_09_2025_interface_abstract_method;
 
-/*Assignment 01 :
+/*Assignment 01 : Test
 ---------------
 Write a program to implement an interface Payable with method pay() using amount to pay.
 
