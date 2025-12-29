@@ -15,5 +15,5 @@ Enter array elements:
 Output:
 No duplicate numbers found in the array.*/
 public class FindDuplicateNumberMain {
-
+	
 }
