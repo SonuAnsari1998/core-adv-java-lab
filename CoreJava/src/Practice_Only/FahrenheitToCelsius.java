@@ -1,7 +1,5 @@
 package Practice_Only;
 
-import java.awt.Taskbar.Feature;
-
 /*4) write Java Program Convert Fahrenheit To Celsius | Vice Versa
  Formula =
  Celsius=(Fahrenheit-32)*5/9;
