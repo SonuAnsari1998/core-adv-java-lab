@@ -1,4 +1,4 @@
-package dec_30_2025_Collection_Practice_Only;
+package jan_01_2026_Collection_Practice_Only;
 import module java.base;	
 /*1) By using toString() method of respective class [JDK 1.0]
 2) By using Ordinary for loop [JDK 1.0]
@@ -58,8 +58,12 @@ public class FetchORetrieveTheCollectionObject {
 		IO.println("By Using ListIterator<E> interface");
 		ListIterator<String> listiterator=listofCity.listIterator();
 		while(listiterator.hasNext()) {
-			IO.println(listiterator.next());
+			IO.println(listiterator.next()); //5
 		}
+		
+		
+		
+		
 		IO.println("--------------Reverse Order-----------");
 		while(listiterator.hasPrevious()) {
 			IO.println(listiterator.previous());
