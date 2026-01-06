@@ -1,4 +1,4 @@
-package jan_01_2025_Collection_Comparator_Array;
+package jan_01_2026_Collection_Comparator_Array;
 /*Q4) Find the Smallest and Largest Elements in an Array.
      int[] arr = {15, 3, 7, 22, 5, 9, 12};
 

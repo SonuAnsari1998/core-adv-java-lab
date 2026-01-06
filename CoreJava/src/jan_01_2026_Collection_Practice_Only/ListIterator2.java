@@ -1,4 +1,4 @@
-package dec_30_2025_Collection_Practice_Only;
+package jan_01_2026_Collection_Practice_Only;
 /*QUESTION 7: ListIterator1 – Insert Element
 -----------------------------------------
 Goal:

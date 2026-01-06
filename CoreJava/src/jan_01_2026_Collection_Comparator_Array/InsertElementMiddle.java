@@ -1,4 +1,4 @@
-package jan_01_2025_Collection_Comparator_Array;
+package jan_01_2026_Collection_Comparator_Array;
 /*Q2) Program to insert an element in the Array in the miidle of the Array.
 
     int[] arr = {1, 2, 3, 5, 6}; [Original Array]

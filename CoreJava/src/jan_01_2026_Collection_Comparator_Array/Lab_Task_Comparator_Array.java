@@ -1,4 +1,4 @@
-package jan_01_2025_Collection_Comparator_Array;
+package jan_01_2026_Collection_Comparator_Array;
 
 /*Q1) Create a record called Customer, which accepts id, name and bill as a component.
 

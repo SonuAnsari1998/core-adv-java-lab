@@ -1,0 +1,111 @@
+package jan_02_2026_Collection_Array;
+
+/*=======================================================================
+Q1.Remove an Element from an Array at Given Index
+
+Problem: Remove an element from a specified index.
+
+int[] arr = {10, 20, 30, 40, 50};
+int index = 2;
+
+
+Output:
+
+Array after deletion: [10, 20, 40, 50]
+
+Q2) Reverse an Array Without Using Another Array
+int[] arr = {10, 20, 30, 40, 50};
+
+
+Output:
+
+Reversed Array: [50, 40, 30, 20, 10]
+
+Q3) Check Whether Two Arrays Are Equal
+
+Two arrays are equal if:
+
+Same length
+
+Same elements in same order
+
+int[] arr1 = {1, 2, 3, 4};
+int[] arr2 = {1, 2, 3, 4};
+
+
+Output:
+
+Arrays are equal
+
+Q4) Find Duplicate Elements in an Array
+int[] arr = {1, 2, 3, 4, 2, 5, 3};
+
+
+Output:
+
+Duplicate elements: 2 3
+
+
+Q5) Find Second Largest Element in an Array
+int[] arr = {12, 35, 1, 10, 34, 1};
+
+
+Output:
+
+Second Largest Element: 34
+
+Q6) Create a record Student and Find Topper
+
+Create a record Student with rollNo, name, and marks.
+
+Create a Student array using Scanner.
+
+Find:
+
+Student with highest marks
+
+Student with lowest marks
+==============================================================================
+package com.nit;
+
+public class CommonElement {
+
+	public static void main(String[] args) {
+		int[] arr1 = {1, 3, 4, 7, 9, 10};
+	    int[] arr2 = {2, 3, 7, 6, 9, 12};
+        for(int i=0;i<arr1.length;i++)
+        {
+        	for(int j=0;j<arr2.length;j++)
+        	{
+        		if(arr1[i]==arr2[j])
+        		{
+        			System.out.println(arr1[i]);
+        		}
+        	}
+        }
+	}
+
+}
+
+
+=====================================================================
+package com.nit;
+public class FindMaxAndMin {
+
+	public static void main(String[] args) {
+		int[] arr = {15, 3, 7, 22, 5, 9, 12};
+        int min=arr[0];
+        int max=arr[0];//15
+        for(int i=0;i<arr.length;i++)
+        {
+        	if(arr[i]>max)
+        		max=arr[i];
+        	if(arr[i]<min)
+        		min=arr[i];
+        }
+        System.out.println("Min:"+min+"\nmax:"+max);
+
+	}
+
+}
+*/
