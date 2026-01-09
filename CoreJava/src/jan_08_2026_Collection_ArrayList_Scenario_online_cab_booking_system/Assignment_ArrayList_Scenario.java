@@ -1,6 +1,5 @@
 package jan_08_2026_Collection_ArrayList_Scenario_online_cab_booking_system;
 
-import java.util.ArrayList;
 
 /*Assignment 01 :
 ----------------

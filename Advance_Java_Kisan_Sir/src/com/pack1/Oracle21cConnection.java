@@ -9,7 +9,7 @@ public class Oracle21cConnection {
 
     public static void main(String[] args) {
 
-        String url = "jdbc:oracle:thin:@localhost:1521/orclpdb1";
+        String url = "jdbc:oracle:thin:@localhost:1521:orcl";
         String username = "c##sonu";
         String password = "sonu";
 
