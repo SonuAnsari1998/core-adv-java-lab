@@ -23,13 +23,15 @@ public class CRUD_Application {
 	public void getData(String getDetails) {
 		try {
 			Connection conn = connection();
-			Statement str = conn.createStatement();
-			ResultSet resultSet = str.executeQuery(getDetails);
-			System.out.println("ID\tFirst Name\tLast Name\tSalary\t\tLocation\n");
+			PreparedStatement ps = conn.prepareStatement(getDetails);
 
-			while (resultSet.next()) {
-				System.out.println(resultSet.getInt(1) + "\t" + resultSet.getString(2) + "\t\t" + resultSet.getString(3)
-						+ "\t\t" + resultSet.getDouble(4) + "\t\t" + resultSet.getString(5));
+			ResultSet rs = ps.executeQuery();
+			ResultSetMetaData meta = rs.getMetaData();
+			while (rs.next()) {
+				for (int i = 1; i <= meta.getColumnCount(); i++) {
+					System.out.print(rs.getString(i) + "\t");
+				}
+				System.out.println();
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -111,7 +113,8 @@ public class CRUD_Application {
 			int choice = Integer.parseInt(IO.readln("Enter Your Choice"));
 			switch (choice) {
 			case 1 -> {
-				String viewQuery = "select * from Employee";
+				String view=IO.readln("Enter Table Name");
+				String viewQuery = "select * from "+view;
 				System.out.println("\n---------------Employee Table---------------------------");
 				crud.getData(viewQuery);
 			}
