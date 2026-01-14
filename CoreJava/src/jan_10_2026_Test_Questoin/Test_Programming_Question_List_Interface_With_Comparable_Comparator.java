@@ -3,7 +3,8 @@ package jan_10_2026_Test_Questoin;
 /*1. EmployeeListSorter
 
 Problem Description
-2) Write a java program to create an object of ArrayList<Emp> class, add five employees details(employee numbers, names & salaries)
+2) Write a java program to create an object of ArrayList<Emp> class,
+ add five employees details(employee numbers, names & salaries)
 & display employees details based on employees names in alphabetical order.
 Note: Use Comparator interface or Comparable interface to sort employees names.
 

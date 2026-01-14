@@ -27,9 +27,10 @@ public class CRUD_Application {
 
 			ResultSet rs = ps.executeQuery();
 			ResultSetMetaData meta = rs.getMetaData();
+			IO.println("EID\t\tFirst Name\tLast Name\tSalary\t\tLocation\n");
 			while (rs.next()) {
 				for (int i = 1; i <= meta.getColumnCount(); i++) {
-					System.out.print(rs.getString(i) + "\t");
+					System.out.print(rs.getString(i) + "\t\t");
 				}
 				System.out.println();
 			}
@@ -40,19 +41,12 @@ public class CRUD_Application {
 
 	public void insertData(String id, String fname, String lname, double salary, String location) {
 
-		String insertQuery = "INSERT INTO Employee VALUES (?, ?, ?, ?, ?)";
+		String insertQuery = "INSERT INTO Employee VALUES ('"+id+"', '"+fname+"', '"+lname+"', "+salary+", '"+location+"')";
 
 		try {
 			Connection conn = connection();
-			PreparedStatement ps = conn.prepareStatement(insertQuery);
-
-			ps.setString(1, id);
-			ps.setString(2, fname);
-			ps.setString(3, lname);
-			ps.setDouble(4, salary);
-			ps.setString(5, location);
-
-			int rowInserted = ps.executeUpdate();
+			Statement stm=conn.createStatement();
+			int rowInserted = stm.executeUpdate(insertQuery);
 
 			if (rowInserted == 0) {
 				System.err.println("Data not inserted........");
@@ -113,8 +107,7 @@ public class CRUD_Application {
 			int choice = Integer.parseInt(IO.readln("Enter Your Choice"));
 			switch (choice) {
 			case 1 -> {
-				String view = IO.readln("Enter Table Name");
-				String viewQuery = "select * from " + view;
+				String viewQuery = "select * from Employee";
 				System.out.println("\n---------------Employee Table---------------------------");
 				crud.getData(viewQuery);
 			}
@@ -122,7 +115,6 @@ public class CRUD_Application {
 				String id = IO.readln("Enter Employee ID");
 				String fname = IO.readln("Enter Employee First Name");
 				String lname = IO.readln("Enter Employee Last Name");
-				;
 				double salary = Double.parseDouble(IO.readln("Enter Employee Salary"));
 				String location = IO.readln("Enter Location");
 				crud.insertData(id, fname, lname, salary, location);
