@@ -6,7 +6,7 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.Scanner;
 import java.sql.Connection;
-
+//---------Connection to Database----------
 public class hotel_Reservation_System {
 	String url = "jdbc:oracle:thin:@localhost:1521:orcl";
 	String user = "c##sonu";
