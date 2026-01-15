@@ -1,11 +1,12 @@
 package hotel_Reservation_System;
-
+//Hotel Reservation System Project using Core java + JDBC
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.Scanner;
 import java.sql.Connection;
+
 //---------Connection to Database----------
 public class hotel_Reservation_System {
 	String url = "jdbc:oracle:thin:@localhost:1521:orcl";
@@ -174,6 +175,7 @@ public class hotel_Reservation_System {
 		System.out.println();
 		System.out.println("ThankYou For Using Hotel Reservation System!!!");
 	}
+
 //--------main Method----------
 	public static void main(String[] args) {
 		hotel_Reservation_System hotel = new hotel_Reservation_System();
