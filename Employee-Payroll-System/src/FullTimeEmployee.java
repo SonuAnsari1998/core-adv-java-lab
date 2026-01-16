@@ -1,4 +1,4 @@
-
+//Full time class
 public class FullTimeEmployee extends Employee {
     private double monthlySalary;
 
