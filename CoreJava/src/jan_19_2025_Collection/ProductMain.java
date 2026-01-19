@@ -13,7 +13,7 @@ public class ProductMain {
 			IO.println("4) View Poduct Details");
 			IO.println("5) Exit");
 			try {
-				
+
 				int choice = Integer.parseInt(IO.readln("Enter Your choice....\n"));
 				switch (choice) {
 				case 1 -> {
@@ -28,13 +28,13 @@ public class ProductMain {
 				}
 				case 2 -> {
 					int id = Integer.parseInt(IO.readln("Enter Poduct Id "));
-					shoping.removeProduct(id);
+					//.removeProduct(id);
 				}
 				case 3 -> {
 					int id = Integer.parseInt(IO.readln("Enter Poduct Id "));
 					int Updateqty = Integer.parseInt(IO.readln("Enter Update Quantity.."));
-					shoping.updateQuantity(id, Updateqty);
-					
+					//shoping.updateQuantity(id, Updateqty);
+
 				}
 				case 4 -> {
 					shoping.showData();
@@ -45,13 +45,12 @@ public class ProductMain {
 				}
 				default -> System.err.println("Invalid Choice. Please Enter valid choice");
 				}
-			}
-			catch(Exception e) {
-				if(e instanceof InputMismatchException) {
-					
+			} catch (Exception e) {
+				if (e instanceof InputMismatchException) {
+
 				}
-				if(e instanceof NumberFormatException) {
-					
+				if (e instanceof NumberFormatException) {
+
 				}
 			}
 
