@@ -29,12 +29,18 @@ public class ShoppingCart {
 			Product p=list.next();
 			if(p.getProductId()==id) {
 				p.setProductQuantuty(productQuantuty);
+				IO.println(productQuantuty +" is Updated Sucessfully.......");
 				isFound=true;
 				break;
 			}
 		}
 		if(!isFound) {
 			IO.println("Product id not found...........");
+		}
+	}
+	public void showData() {
+		for(Product products : productList) {
+			IO.println(products);
 		}
 	}
 }
