@@ -80,10 +80,12 @@ public class ShoppingCart {
 		try {
 			Statement stm = conn.createStatement();
 			ResultSet rest=stm.executeQuery("select * from ShoppingCart");
-			IO.println();
+			IO.println("-------------------Product Details------------------------------\n");
+			IO.println("Product Id \tProduct Name \tPrice\t\tQuentity");
 			while(rest.next()) {
-				IO.println(rest.getInt(1)+"\t"+rest.getString(2)+"\t"+rest.getDouble(3)+"\t\t"+rest.getInt(4));
+				IO.println(rest.getInt(1)+"\t\t"+rest.getString(2)+"\t\t"+rest.getDouble(3)+"\t\t"+rest.getInt(4));
 			}
+			IO.println("----------------------------------------------------------------");
 			
 		}
 		catch(Exception e) {
