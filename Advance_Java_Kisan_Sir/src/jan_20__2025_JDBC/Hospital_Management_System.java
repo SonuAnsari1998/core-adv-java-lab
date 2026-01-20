@@ -30,6 +30,7 @@ public class Hospital_Management_System {
 			PreparedStatement prep1 = conn.prepareStatement("insert into PATIENT values (?,?,?,?)");
 			PreparedStatement prep2 = conn.prepareStatement("select * from patient");
 			PreparedStatement prep3 = conn.prepareStatement("select * from patient where PID=?");
+			PreparedStatement prep4 = conn.prepareStatement("update patient set PCONTACT=? where pid=?");
 			while (true) {
 				IO.println("--------Patient Data-----------");
 				IO.println("1. Add Patient Details...");
@@ -57,28 +58,38 @@ public class Hospital_Management_System {
 
 				}
 				case 2 -> {
-					ResultSet rest=prep2.executeQuery();
+					ResultSet rest = prep2.executeQuery();
 					IO.println("-------------Patient Details---------------");
 					IO.println("PID\tPNAME\tAGE\tPCONTACT");
-					while(rest.next()) {
-						IO.println(rest.getInt(1)+"\t"+rest.getString(2)+"\t"+rest.getInt(3)+"\t"+rest.getLong(4));
+					while (rest.next()) {
+						IO.println(rest.getInt(1) + "\t" + rest.getString(2) + "\t" + rest.getInt(3) + "\t"
+								+ rest.getLong(4));
 					}
 					IO.println("-----------------------------------------\n");
 				}
 				case 3 -> {
-					int pId=Integer.parseInt(IO.readln("Enter Patient ID"));
+					int pId = Integer.parseInt(IO.readln("Enter Patient ID"));
 					prep3.setInt(1, pId);
-					ResultSet rest=prep3.executeQuery();
+					ResultSet rest = prep3.executeQuery();
 					IO.println("-------------Patient Details---------------");
 					IO.println("PID\tPNAME\tAGE\tPCONTACT");
-					while(rest.next()) {
-						IO.println(rest.getInt(1)+"\t"+rest.getString(2)+"\t"+rest.getInt(3)+"\t"+rest.getLong(4));
+					while (rest.next()) {
+						IO.println(rest.getInt(1) + "\t" + rest.getString(2) + "\t" + rest.getInt(3) + "\t"
+								+ rest.getLong(4));
 					}
 					IO.println("-----------------------------------------\n");
-					
 				}
 				case 4 -> {
-
+					int pId = Integer.parseInt(IO.readln("Enter Patient ID"));
+					long uMobile = Long.parseLong(IO.readln("Enter Updated mobile number "));
+					prep4.setLong(1, uMobile);
+					prep4.setInt(2, pId);
+					int rowCount = prep4.executeUpdate();
+					if (rowCount > 0) {
+						IO.println(pId + " Updated Sucessfully..........");
+					} else {
+						IO.println(pId + " Not Updated...");
+					}
 				}
 				case 5 -> {
 
