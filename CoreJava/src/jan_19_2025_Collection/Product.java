@@ -7,10 +7,17 @@ public class Product {
 	int productQuantuty;
 
 	public Product(int productId, String productName, double productPrice, int productQuantuty) {
+		if(productId<0) {
+			IO.println("Please Enter Possitive Product id");
+			System.exit(0);
+		
+		}
+		else {
 		this.productId = productId;
 		this.productName = productName;
 		this.productPrice = productPrice;
 		this.productQuantuty = productQuantuty;
+		}
 	}
 
 	public int getProductId() {

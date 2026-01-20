@@ -4,6 +4,7 @@ import java.util.InputMismatchException;
 
 public class ProductMain {
 	void main() {
+		
 		ShoppingCart shoping = new ShoppingCart();
 
 		while (true) {
@@ -46,15 +47,10 @@ public class ProductMain {
 				default -> System.err.println("Invalid Choice. Please Enter valid choice");
 				}
 			} catch (Exception e) {
-				if (e instanceof InputMismatchException) {
-
-				}
 				if (e instanceof NumberFormatException) {
-
+					IO.println("Please Enter Valid Input.......");
 				}
 			}
-
 		}
-
 	}
 }
