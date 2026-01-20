@@ -31,8 +31,9 @@ public class Hospital_Management_System {
 			PreparedStatement prep2 = conn.prepareStatement("select * from patient");
 			PreparedStatement prep3 = conn.prepareStatement("select * from patient where PID=?");
 			PreparedStatement prep4 = conn.prepareStatement("update patient set PCONTACT=? where pid=?");
+			PreparedStatement prep5 = conn.prepareStatement("delete from patient where pid=?");
 			while (true) {
-				IO.println("--------Patient Data-----------");
+				IO.println("--------Welcome to Hospital Management System-----------");
 				IO.println("1. Add Patient Details...");
 				IO.println("2. Views All Patients...");
 				IO.println("3. Reterive Patients Data...");
@@ -92,7 +93,14 @@ public class Hospital_Management_System {
 					}
 				}
 				case 5 -> {
-
+					int pId = Integer.parseInt(IO.readln("Enter Patient ID"));
+					prep5.setInt(1, pId);
+					int rowCount = prep5.executeUpdate();
+					if (rowCount > 0) {
+						IO.println("Patient id " + pId + " Deleted Sucessfully....");
+					} else {
+						IO.println(pId + " Not Deleted...");
+					}
 				}
 				case 6 -> {
 					IO.println("Thank you for visiting.......");
