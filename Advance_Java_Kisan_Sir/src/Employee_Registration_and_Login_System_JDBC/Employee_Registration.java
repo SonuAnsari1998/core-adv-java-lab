@@ -28,11 +28,14 @@ public class Employee_Registration {
 					.prepareStatement("insert into EmployeeRegistration values(?, ?, ?, ?, ?, ?, ?)");
 			PreparedStatement prep2 = conn.prepareStatement(
 					"select FNAME , LNAME, MID, ADDR, PHN from EmployeeRegistration where ENAME = ? OR PWORD = ?");
+			PreparedStatement prep3 = conn
+					.prepareStatement("update EmployeeRegistration set ADDR=?, PHN=? where ENAME=?");
 
 			IO.println("------------Employee Registration------------");
 			while (true) {
-				IO.println("1. Employee Registration");
+				IO.println("1. New Registration");
 				IO.println("2. Employee Login");
+				IO.println("3. Update Profile");
 				IO.print("");
 				int choice = Integer.parseInt(IO.readln("Enter your choice"));
 				switch (choice) {
@@ -67,16 +70,29 @@ public class Employee_Registration {
 					prep2.setString(2, password);
 					ResultSet rs = prep2.executeQuery();
 					IO.println("\nRegistration Details...");
-					IO.println("First Name\tLast Name\tAddress\t\t\tEmail ID\tPhone No.");
-					while(rs.next()) {
-						IO.println(rs.getString(1)+"\t\t"+rs.getString(2)+"\t\t"+rs.getString(3)+"\t"+rs.getString(4)+"\t"+rs.getLong(5));
+					IO.println("First Name\tLast Name\tEmail ID\t\t\tAddress\t\t\tPhone No.");
+					while (rs.next()) {
+						IO.println(rs.getString(1) + "\t\t" + rs.getString(2) + "\t\t" + rs.getString(3) + "\t\t"
+								+ rs.getString(4) + "\t" + rs.getLong(5));
 					}
 					IO.println();
 				}
-				
-				
-				
-				default -> System.err.println("Invlalid choice");
+				case 3 -> {
+					String ename = IO.readln("Enter User Name");
+					String address = IO.readln("Enter New Adress");
+					long phoneNo = Long.parseLong(IO.readln("Enter New Mobile No."));
+					prep3.setString(1, address);
+					prep3.setLong(2, phoneNo);
+					prep3.setString(3, ename);
+					int rowCount = prep3.executeUpdate();
+					if (rowCount > 0) {
+						IO.println("Registration Details Updated Sucessfully..............\n");
+					} else {
+						System.err.println(ename + " Not Found! Please Enter Valid username..");
+					}
+
+				}
+				default -> System.err.println("Invlalid choice. Please Enter Valid Choice...");
 				}
 				;
 			}
