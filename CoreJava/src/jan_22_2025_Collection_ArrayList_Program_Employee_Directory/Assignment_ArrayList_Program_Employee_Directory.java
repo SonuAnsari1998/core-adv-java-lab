@@ -59,6 +59,7 @@ Contains a constructor to initialize the activity's details and getters to acces
 Overrides the toString() method to provide a string representation of an activity.
 
 Destination:
+
 Represents a destination with a name and a list of activities.
 Has a constructor to set the destination's name and initialize an empty list of activities.
 Provides methods to add activities to the destination and retrieve the list of activities.

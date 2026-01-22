@@ -16,10 +16,7 @@ public class StoreObject {
 		List<Student> listOfStudent = new ArrayList<>();
 		System.out.println("Enter size of loop");
 		int n = sc.nextInt();
-		String msg="""1)ssss"
-				2)dfghj
 
-				""";
 		for (int i = 1; i <= n; i++) {
 			Student studentObject = Student.getStudentObject();
 			listOfStudent.add(studentObject);
