@@ -2,7 +2,7 @@ package jan_10_2026_Test_Questoin;
 
 /*1. EmployeeListSorter
 
-Problem Description
+Problem Description 
 2) Write a java program to create an object of ArrayList<Emp> class,
  add five employees details(employee numbers, names & salaries)
 & display employees details based on employees names in alphabetical order.
@@ -58,8 +58,9 @@ List after removing even numbers: [1, 3, 5, 7, 9]
 Problem Description
 Assignment :
 ----------------------
-Develop a scenario based program by using Collections Framework for processing the Library Management System
-using different available options like Display books in the Library, Issue a book, search a particular book in the library.
+Develop a scenario based program by using Collections Framework for processing the 
+Library Management System using different available options like Display books in the 
+Library, Issue a book, search a particular book in the library.
 
 Create a record called Book.
 
@@ -77,13 +78,16 @@ methods :
 Argument           : 1 argument of type Vector<Book>
 Return Type        : void
 Access modifier    : public
-In this method display all the available books in the Library.[See the Test cases for More Details]
+In this method display all the available books in the Library.[See the Test cases for 
+More Details]
 
 2) Method Name     : issueBook()
 Argument           : 2 arguments [Vector<Book>, Scanner sc]
 Return Type        : void
 Access modifier    : public
-In this method issueBook from the Library based on the id of the Book, If Book is available (based on the id) then remove() the Book from the Library otherwise give an error message  "Book with ID 103 not Found"
+In this method issueBook from the Library based on the id of the Book, If Book is 
+available (based on the id) then remove() the Book from the Library otherwise give an 
+error message  "Book with ID 103 not Found"
 [See Test cases for More details]
 
 
@@ -91,11 +95,14 @@ In this method issueBook from the Library based on the id of the Book, If Book i
 Argument           : 2 arguments [Vector<Book>, Scanner sc]
 Return Type        : void
 Access modifier    : public
-In this method search a Book from the Library by using title OR author, If Book is available either by title OR Author then give a message "Book Found", If not available then give an error message "No matching books found."
+In this method search a Book from the Library by using title OR author, If Book is 
+available either by title OR Author then give a message "Book Found", If not available 
+then give an error message "No matching books found."
 
 
 Create an ELC class called LibraryManagement which contains main method.
-Inside main method Create Vector class object to add books available in the library. [See the Test cases for Library Books] 
+Inside main method Create Vector class object to add books available in the library. 
+[See the Test cases for Library Books] 
 
 Inside main method display the following details as a Menu.
 Select from the Menu :
