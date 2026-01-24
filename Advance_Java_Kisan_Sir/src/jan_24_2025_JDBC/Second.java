@@ -1,4 +1,4 @@
-package jan_23_2025_JDBC;
+package jan_24_2025_JDBC;
 
 import javax.sql.rowset.CachedRowSet;
 import javax.sql.rowset.JdbcRowSet;
@@ -54,9 +54,36 @@ public class Second {
 		}
 	}
 
+	public void delete() {
+		try {
+			RowSetFactory rsf = RowSetProvider.newFactory();
+			CachedRowSet jrs = rsf.createCachedRowSet();
+			jrs.setUrl(url);
+			jrs.setUsername(user);
+			jrs.setPassword(pwd);
+			jrs.setCommand("Select * from employee");
+			jrs.execute();
+			while (jrs.next()) {
+				String id = jrs.getString(1);
+				if (id.equals("101")) {
+					jrs.deleteRow();
+					System.out.println("Deleted sucess");
+
+				}
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
 	public static void main(String[] args) {
 		Second s = new Second();
+
 		s.show();
+
 		s.Update();
+
+		s.delete();
+
 	}
 }
