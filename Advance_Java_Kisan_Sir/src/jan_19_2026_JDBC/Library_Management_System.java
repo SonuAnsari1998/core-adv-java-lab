@@ -1,4 +1,4 @@
-package jan_19_2025_JDBC;
+package jan_19_2026_JDBC;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

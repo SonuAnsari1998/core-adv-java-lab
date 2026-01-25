@@ -1,4 +1,4 @@
-package jan_24_2025_JDBC;
+package jan_24_2026_JDBC;
 
 import javax.sql.rowset.CachedRowSet;
 import javax.sql.rowset.JdbcRowSet;
