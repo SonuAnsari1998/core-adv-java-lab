@@ -20,7 +20,7 @@ public class StudentDataManagement {
 				String name = IO.readln("Enter Student name:");
 				int marks = Integer.parseInt(IO.readln("Enter marks:"));
 				studentList.put(name, marks);
-				System.out.println("Student added successfully!");
+				System.out.println("Student added successfully!\n");
 			}
 			case 2 -> {
 				String updateName = IO.readln("Enter student name to update the marks :");
@@ -33,9 +33,9 @@ public class StudentDataManagement {
 					}
 				}
 				if (isUpdate) {
-					System.out.println("Marks updated successfully!");
+					System.out.println("Marks updated successfully!\n");
 				} else {
-					System.err.println(updateName + " Not Found...");
+					System.err.println(updateName + " Not Found...\n");
 				}
 			}
 			case 3 -> {
@@ -43,9 +43,9 @@ public class StudentDataManagement {
 				boolean isDelete = false;
 				if (studentList.containsKey(name)) {
 					studentList.remove(name);
-					System.out.println("Student " + name + " deleted successfully!");
+					System.out.println("Student " + name + " deleted successfully!\n");
 				} else {
-					System.err.println(name + " Not Found!");
+					System.err.println(name + " Not Found!\n");
 				}
 			}
 			case 4 -> {
@@ -53,18 +53,18 @@ public class StudentDataManagement {
 				boolean isFound = true;
 				for (Map.Entry<String, Integer> entry : studentList.entrySet()) {
 					if (entry.getKey().equals(name)) {
-						System.out.println("Student Name is " + entry.getKey() + " And makrs is " + entry.getValue());
+						System.out.println("Student Name is " + entry.getKey() + " And makrs is " + entry.getValue()+"\n");
 						isFound = false;
 						break;
 					}
 				}
 				if (isFound) {
-					System.err.println(name + " Not Found");
+					System.err.println(name + " Not Found\n");
 				}
 			}
 			case 5 -> {
 				for (Map.Entry<String, Integer> entry : studentList.entrySet()) {
-					System.out.println(entry.getKey() + " => " + entry.getValue());
+					System.out.println(entry.getKey() + " => " + entry.getValue()+"\n");
 				}
 			}
 			case 6 -> {
@@ -72,7 +72,7 @@ public class StudentDataManagement {
 
 				for (Map.Entry<String, Integer> entry : studentList.entrySet()) {
 					if (entry.getValue().equals(max)) {
-						IO.println(entry.getKey() + " " + entry.getValue());
+						IO.println(entry.getKey() + " " + entry.getValue()+"\n");
 						break;
 					}
 				}
@@ -82,7 +82,7 @@ public class StudentDataManagement {
 
 				for (Map.Entry<String, Integer> entry : studentList.entrySet()) {
 					if (entry.getValue().equals(min)) {
-						IO.println(entry.getKey() + " " + entry.getValue());
+						IO.println(entry.getKey() + " " + entry.getValue()+"\n");
 						break;
 					}
 				}
@@ -94,14 +94,14 @@ public class StudentDataManagement {
 					total+=entry.getValue();
 				}
 				System.out.println("Total Marks: "+total);
-				System.out.println("Average Marks: "+(double)total/studentList.size());
+				System.out.println("Average Marks: "+(double)total/studentList.size()+"\n");
 			}
 			case 9->{
-				System.out.println("Thank you for Visiting........");
+				System.out.println("\nThank you for Visiting........");
 				System.exit(0);
 			}
 
-			default -> System.err.println("Invalid choice... Please Enter valid choice..");
+			default -> System.err.println("\nInvalid choice... Please Enter valid choice..");
 			}
 		}
 

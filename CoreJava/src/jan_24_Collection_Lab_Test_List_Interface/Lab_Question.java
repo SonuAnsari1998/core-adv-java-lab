@@ -1,17 +1,16 @@
 package jan_24_Collection_Lab_Test_List_Interface;
 
 /*1. HashMapIterateandSearchKey
-Easy
-100 points
-• 130 min suggested
-Problem Description
-1) Write a program to iterate keys & values of HashMap and also check given key exist or not? if exist then display the value of given key.
 
-Examples
-Example 1
+Problem Description
+1) Write a program to iterate keys & values of HashMap and also check given key exist or
+ not? if exist then display the value of given key.
+
+
 Input:
 Enter key to search:
 102
+
 Output:
 HashMap Elements:
 Key: 101, Value: Java
