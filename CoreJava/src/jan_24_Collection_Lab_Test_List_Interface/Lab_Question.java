@@ -51,11 +51,10 @@ Product [id=S001, name=Tablet, price=500.0]
 
 =================================================================
 3. EmployeeSortAndArrayConvert
-Easy
-100 points
-• 130 min suggested
+
 Problem Description
-You are required to create an Employee Management System in Java that performs the following operations:
+You are required to create an Employee Management System in Java that performs the following 
+operations:
 
 Read employee details from user input (ID, Name, Salary)
 
@@ -85,3 +84,4 @@ ID: 999, Name: Sarah, Salary: $99999.99
 
 === Converted Object Array ===
 ID: 999, Name: Sarah, Salary: $99999.99*/
+
