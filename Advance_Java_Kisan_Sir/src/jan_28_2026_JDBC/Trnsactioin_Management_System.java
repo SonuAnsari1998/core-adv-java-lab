@@ -46,7 +46,7 @@ public class Trnsactioin_Management_System {
 
 			PreparedStatement pstmt1 = con.prepareStatement(sqlQuery1);
 			pstmt1.setString(1, "12345");
-			pstmt1.setDate(2, java.sql.Date.valueOf("2024-10-10")); // ✅ FIXED
+			pstmt1.setDate(2, java.sql.Date.valueOf("2024-10-10"));
 			pstmt1.setString(3, "Sleeper");
 
 			int rowCount1 = pstmt1.executeUpdate();
@@ -72,7 +72,6 @@ public class Trnsactioin_Management_System {
 			else
 				System.out.println("Booking Record Created\nAwaiting for Payment Confirmation!!!");
 
-			// 3️⃣ Check payment
 			PreparedStatement pstmt3 = con.prepareStatement(sqlQuery3);
 			pstmt3.setString(1, "C124");
 
@@ -83,7 +82,6 @@ public class Trnsactioin_Management_System {
 				status = rs.getString(1);
 			}
 
-			// 4️⃣ Commit or Rollback
 			if (status.equalsIgnoreCase("Failed")) {
 				con.rollback(sp);
 				throw new RuntimeException("Transaction Failed - Payment Unsuccessful");
@@ -94,7 +92,7 @@ public class Trnsactioin_Management_System {
 				int rowCount3 = pstmt4.executeUpdate();
 
 				if (rowCount3 == 0)
-					throw new RuntimeException("Transaction Failed at Payment portal");
+					throw new RuntimeException("Transaction Failed at Payment portal...");
 				else {
 					con.commit();
 					System.out.println("Ticket Successfully BOOKED!!!");
