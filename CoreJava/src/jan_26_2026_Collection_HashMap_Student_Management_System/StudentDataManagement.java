@@ -52,7 +52,7 @@ public class StudentDataManagement {
 				String name = IO.readln("Enter student name to search:");
 				boolean isFound = true;
 				for (Map.Entry<String, Integer> entry : studentList.entrySet()) {
-					if (entry.getKey().equals(name)) {
+					if (entry.getKey().contains(name)) {
 						System.out.println("Student Name is " + entry.getKey() + " And makrs is " + entry.getValue()+"\n");
 						isFound = false;
 						break;
