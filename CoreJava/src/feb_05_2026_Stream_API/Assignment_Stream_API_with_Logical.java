@@ -51,14 +51,14 @@ Q7) WAP to convert Integer Array to String Representation
 
 ------------------------------------------------------------------------
 Q8) WAP to convert all the names of String array into uppercase 
-
+ConvertUppercase
     String[] names = {"Virat", "Sanju", "Rohit", "Bumrah"};
 
     Output : [VIRAT, SANJU, ROHIT, BUMRAH]
 
  ------------------------------------------------------------------------
 Q9) WAP to convert boolean value to "Yes" or "No"
-
+ConvertBooleanValueIntoYesNo
     Boolean[] flags = {true, false, true, false, true};
 
     Yes/No Values: [Yes, No, Yes, No, Yes]
