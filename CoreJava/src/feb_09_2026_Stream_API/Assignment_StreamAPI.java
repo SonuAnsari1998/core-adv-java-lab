@@ -1,0 +1,16 @@
+package feb_09_2026_Stream_API;
+
+/*1. Given a list of Person objects with name and age properties, write a program to sort the list of persons by age in ascending order using the Stream API.
+
+2. Write a program to convert all the strings in a list to uppercase and print the result using the Stream API. 
+
+3. Given a list of Employee objects with id and salary properties, write a program to sort the list of Employees by salary in descending order using the Stream API.
+
+4. Write a program to convert all the strings in a list to lowercase and print the result using the Stream API.
+
+5. Given a list of Employee objects with id and salary properties, write a program to filter the list of Employees by salary in who are having salary > 30000.
+
+
+6. Write a program to convert all the lower case strings in a list to first letter Uppercase and print the result using the Stream API.
+
+ex -> input -> "abcd" , "efgh" , "jklm" , "xyz" -----> output -> Abcd , Efgh , Jklm , Xyz*/
