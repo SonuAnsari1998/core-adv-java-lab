@@ -1,6 +1,7 @@
 package feb_10_2026_Stream_API;
 
 import java.util.ArrayList;
+import java.util.stream.Collectors;
 
 /*Ques - 4
 ----------------
@@ -41,6 +42,9 @@ public class PersonGenderGrouper {
 		empList.add(new Person("Eve", 28, "Female"));
 		empList.add(new Person("Grace", 26, "Female"));
 		
-		Map<>
+		empList.stream().collect(Collectors.groupingBy( n -> n.gender()));
+		
+		
+		
 	}
 }
