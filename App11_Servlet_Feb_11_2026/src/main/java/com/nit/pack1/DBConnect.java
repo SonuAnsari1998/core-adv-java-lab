@@ -9,7 +9,7 @@ public class DBConnect {
 	static {
 		try {
 			Class.forName(DBInfo.driver);
-			con = DriverManager.getConnection(DBInfo.dbUrl, DBInfo.dbUname, DBInfo.dbPwd);
+			con = DriverManager.getConnection(DBInfo.url, DBInfo.userName, DBInfo.password);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

@@ -7,10 +7,10 @@ public class AddEmpDAO {
 	
 	public int insertEmpData(EmpBean eb) {
 		int rowCount=0;
-		Connection conn= DBConnect.getConection();
+		Connection con= DBConnect.getConection();
 		
 		try {
-			 PreparedStatement pstmt = conn.prepareStatement("");
+			 PreparedStatement pstmt = con.prepareStatement("insert into employee values (?,?,?,?,?)");
 			 pstmt.setString(1, eb.getEmp_id());
 			 pstmt.setString(2, eb.getEmp_fname());
 			 pstmt.setString(3, eb.getEmp_lname());
