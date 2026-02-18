@@ -12,7 +12,7 @@ public class UserRegistrationServlet extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 		UserBean ub = new UserBean();
-		ub.setU_name(req.getParameter("name"));
+		ub.setU_name(req.getParameter("uname"));
 		ub.setU_pwd(req.getParameter("upwd"));
 		ub.setU_fname(req.getParameter("ufname"));
 		ub.setU_lname(req.getParameter("ulname"));
