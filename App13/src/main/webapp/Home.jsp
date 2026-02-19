@@ -11,7 +11,7 @@
 	<center>
 		<h1>
 		<%
-		UserBean ub = (UserBean) application.getAttribute("userBean");
+		UserBean ub = (UserBean) application.getAttribute("msg");
 		out.println("Welcome: "+ ub.getU_fname() + "<br><br>");
 		%>
 		<a href="view">View Profile</a><br><br>
