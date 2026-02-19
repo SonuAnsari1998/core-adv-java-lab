@@ -10,7 +10,6 @@ public class FoodOrder {
 	String user = "c##sonu";
 	String pwd = "sonu";
 	
-
 //connection 
 	public Connection connect() {
 		Connection conn = null;
@@ -71,3 +70,4 @@ public class FoodOrder {
 		
 	}
 }
+
