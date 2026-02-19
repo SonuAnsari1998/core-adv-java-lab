@@ -1,0 +1,26 @@
+package feb_19_2026_Multithreading;
+
+public class Waiter extends Thread{
+	 private Restaurant restaurant;
+	 private String orderName;
+	 
+	 public Waiter(Restaurant restaurant) {
+		 this.restaurant=restaurant;
+	 }
+	 
+	 /* 
+       In this method take the order from the customer and initialize non static variable.
+	  */
+	 public void acceptOrder(String order) {
+		 
+	 }
+	 
+	 /*
+   2) Override the run method, inside this run method place the customer oder
+      in the Restaurant for preparation.*/
+	 @Override
+	 public void run() {
+		 
+	 }
+	 
+} 
