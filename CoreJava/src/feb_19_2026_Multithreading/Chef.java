@@ -1,6 +1,6 @@
 package feb_19_2026_Multithreading;
 
-public class Chef {
+public class Chef extends Thread{
 	private Restaurant restaurant;
 
 	public Chef(Restaurant restaurant) {
@@ -9,6 +9,7 @@ public class Chef {
 	/*1) Override the run method, inside this run method prepare the customer oder
       in the Restaurant for serving.*/
 	public void run() {
+		restaurant.prepareOrder();
 		
 	}
 
