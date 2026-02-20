@@ -1,4 +1,4 @@
-package feb_19_2026_Multithreading;
+package feb_19_2026_Multithreading_ITC;
 
 public class Waiter extends Thread{
 	 private Restaurant restaurant;
