@@ -11,10 +11,10 @@ public class FilterFemaleEmployees {
 		List<Employee> list = EmployeeAdder.addDetails();
 		Set<Integer> set = new HashSet<>();
 		Set<String> set2 = new HashSet<>();
-		
+
 		list.stream()
 			.filter(n -> n.getGender().equalsIgnoreCase("female"))
 				.forEach(IO::println);
-		
+
 	}
 }
