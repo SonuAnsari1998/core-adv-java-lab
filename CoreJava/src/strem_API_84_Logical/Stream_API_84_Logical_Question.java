@@ -99,7 +99,7 @@ public class Tester {
 		Set<String> set2 = new HashSet<>();
 		
 //done	
-//		 1. Filter Employees by Gender: FilterEmployeesGender
+//		 1. Filter Employees by Gender: FilterFemaleEmployees
 //		 - Retrieve a list of all female employees.
 		System.out.println(RED+"*****Retrieve a list of all female employees********"+RESET);
 		list.stream()
