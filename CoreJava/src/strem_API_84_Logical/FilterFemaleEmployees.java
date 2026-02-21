@@ -1,5 +1,6 @@
 package strem_API_84_Logical;
-
+/*1. Filter Employees by Gender: FilterFemaleEmployees
+ 	 Retrieve a list of all female employees.*/
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
