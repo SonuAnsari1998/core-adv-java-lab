@@ -99,7 +99,7 @@ public class Tester {
 		Set<String> set2 = new HashSet<>();
 		
 //done	
-//		 1. Filter Employees by Gender: FilterFemaleEmployees
+//		 1. Filter Employees by Gender: 
 //		 - Retrieve a list of all female employees.
 		System.out.println(RED+"*****Retrieve a list of all female employees********"+RESET);
 		list.stream()
@@ -107,7 +107,7 @@ public class Tester {
 		.forEach(System.out::println);
 		System.out.println(RED+"*****Get a list of employees older than 30 years.********"+RESET);
 
-
+//done	
 //		2. Filter Employees by Age:
 //			   - Get a list of employees older than 30 years.
 		list.stream()
@@ -115,14 +115,14 @@ public class Tester {
 		.forEach(System.out::println);
 		System.out.println(RED+"*****Find employees with a salary greater than $50,000.********"+RESET);
 
-
+//done	
 //		3. Filter Employees by Salary:
 //			   - Find employees with a salary greater than $50,000.
 		list.stream()
 		.filter(employee->employee.getSalary()>50000)
 		.forEach(System.out::println);
 
-
+//done	
 //		4. Map Employee Names:
 //		   - Create a list of employee names (Strings).
 		System.out.println(RED+"*************Create a list of employee names (Strings)*************"+RESET);
@@ -131,7 +131,7 @@ public class Tester {
 		.forEach(System.out::println);
 
 
-
+//done
 //		5. Calculate Average Salary:
 //			   - Calculate the average salary of all employees.
 		System.out.println(RED+"*********Calculate the average salary of all employees.*******"+RESET);
@@ -142,9 +142,9 @@ public class Tester {
 		System.out.println("Average : "+orElseThrow);
 
 
-
+//done
 //		6. Find Maximum Salary:
-//			   - Find the employee with the highest salary.
+//		   Find the employee with the highest salary.
 		System.out.println(RED+"*********Find the employee with the highest salary.********"+RESET);
 		double max = list.stream()
 				.mapToDouble(Employee::getSalary)
