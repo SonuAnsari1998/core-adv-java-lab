@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Registratoin Form</title>
+</head>
+<body>
+<center>
+	<h2>Registration Form</h2>
+	<form action="dis" method="post">
+	<table style="border: 1px solid black; padding: 10px">
+		<tr>
+			<td>Name</td>
+			<td><input type="text" name="tname" value="Enter your name"></td>
+		</tr>
+		
+		<tr>
+			<td>Age</td>
+			<td><input type="text" name="tage" value=""></td>
+		</tr>
+		
+		<tr>
+			<td>Gender</td>
+			<td><input type="radio" name="gen" value="M" checked="checked">Male</td>
+			<td><input type="radio" name="gen" value="F">Female</td>
+		</tr>
+		
+		<tr>
+			<td>MaritalStatus</td>
+			<td><input type="checkbox" name="ms" value="Married">Married</td>
+			<td><input type="checkbox" name="ms" value="Single">Un-Married</td>
+		</tr>
+		
+		<tr>
+			<td>Qualification</td>
+			<td>
+				<select name="qlfy">
+					<option value="B.tech">Engg</option>
+					<option value="MBBS">MBBS</option>
+					<option value="B.A">Arts</option>
+				</select>
+			</td>
+		</tr>
+		
+		
+		<tr>
+			<td>Courses</td>
+			<td>
+				<select name="crs" size="3" multiple="multiple">
+					<option value="Java">JAVA</option>
+					<option value=".net">.Net</option>
+					<option value="Testing">Testing</option>
+				</select>
+			</td>
+		</tr>
+		
+		
+		<tr>
+			<td>Hobbies</td>
+			<td>
+				<input type="checkbox" name="hb" value="read" checked/>Reading
+				<input type="checkbox" name="hb" value="e-sports"/>OnlineGaming
+				<input type="checkbox" name="hb" value="travel"/>Traveling
+			</td>
+		</tr>
+		
+		<tr>
+			<td colspan="2">
+				<input type="submit" value="submit">			
+				<input type="reset" value="cancel">			
+			</td>
+		</tr>
+	</table>
+	</form>
+	</center>
+</body>
+</html>
