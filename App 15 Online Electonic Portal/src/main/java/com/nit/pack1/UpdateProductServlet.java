@@ -40,7 +40,7 @@ public class UpdateProductServlet extends HttpServlet {
 
 			int rowCount = new UpdateProductDAO().updateProduct(pb);
 			if (rowCount > 0) {
-				req.setAttribute("mst", "Product Inventory Update Sucessfully!!!!!");
+				req.setAttribute("msg", "Product Inventory Update Sucessfully!!!!!");
 				req.getRequestDispatcher("UpdateProduct.jsp").forward(req, res);
 			}else {
 				req.setAttribute("msg", "Product Inventory Updation Faild!!");

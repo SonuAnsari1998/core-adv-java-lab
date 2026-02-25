@@ -17,7 +17,7 @@
 		out.println(data+"<br><br>");
 		%>
 		<a href="AddProduct.html">Add Product</a><br><br>
-		<a href="view1">View</a><br><br>
+		<a href="View1">View</a><br><br>
 		<a href="logout">Logout</a>
 		
 	</h1>
