@@ -1,23 +1,361 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Product Inventory</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  min-height: 100vh;
+  font-family: 'Nunito', sans-serif;
+  background: #f0f4ff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  position: relative;
+  overflow: hidden;
+}
+
+.blob {
+  position: fixed;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: 0.45;
+  pointer-events: none;
+  z-index: 0;
+}
+.blob-1 { width: 500px; height: 500px; background: #6c63ff; top: -150px; left: -150px; }
+.blob-2 { width: 400px; height: 400px; background: #ff6584; bottom: -100px; right: -100px; }
+.blob-3 { width: 300px; height: 300px; background: #43e97b; bottom: 100px; left: 100px; }
+
+.card {
+  width: 100%;
+  max-width: 500px;
+  background: #ffffff;
+  border-radius: 28px;
+  box-shadow:
+    0 4px 6px rgba(0,0,0,0.04),
+    0 20px 60px rgba(108,99,255,0.18),
+    0 0 0 1px rgba(108,99,255,0.1);
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
+  animation: popIn 0.5s cubic-bezier(0.34,1.56,0.64,1) both;
+}
+
+@keyframes popIn {
+  from { opacity: 0; transform: scale(0.88) translateY(20px); }
+  to   { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+.card-header {
+  background: linear-gradient(135deg, #6c63ff 0%, #9b59ff 50%, #ff6584 100%);
+  padding: 32px 36px 28px;
+  position: relative;
+  overflow: hidden;
+}
+
+.card-header::before {
+  content: '';
+  position: absolute;
+  width: 200px; height: 200px;
+  background: rgba(255,255,255,0.08);
+  border-radius: 50%;
+  top: -60px; right: -40px;
+}
+.card-header::after {
+  content: '';
+  position: absolute;
+  width: 120px; height: 120px;
+  background: rgba(255,255,255,0.06);
+  border-radius: 50%;
+  bottom: -30px; right: 80px;
+}
+
+.header-icon-wrap {
+  width: 56px; height: 56px;
+  background: rgba(255,255,255,0.22);
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  color: #fff;
+  margin-bottom: 14px;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255,255,255,0.3);
+}
+
+.card-header h2 {
+  color: #fff;
+  font-size: 26px;
+  font-weight: 900;
+  letter-spacing: -0.3px;
+  line-height: 1.2;
+}
+
+.card-header p {
+  color: rgba(255,255,255,0.75);
+  font-size: 13.5px;
+  margin-top: 5px;
+  font-weight: 600;
+}
+
+.badge {
+  position: absolute;
+  top: 20px; right: 24px;
+  background: rgba(255,255,255,0.2);
+  color: #fff;
+  font-size: 11px;
+  font-weight: 800;
+  padding: 5px 12px;
+  border-radius: 20px;
+  border: 1px solid rgba(255,255,255,0.35);
+  letter-spacing: 0.5px;
+  backdrop-filter: blur(8px);
+}
+
+.card-body {
+  padding: 32px 36px 36px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.field-group {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  animation: slideIn 0.4s ease both;
+}
+
+.field-group:nth-child(1) { animation-delay: 0.08s; }
+.field-group:nth-child(2) { animation-delay: 0.13s; }
+.field-group:nth-child(3) { animation-delay: 0.18s; }
+
+@keyframes slideIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+label {
+  font-size: 12.5px;
+  font-weight: 800;
+  color: #555577;
+  text-transform: uppercase;
+  letter-spacing: 0.7px;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+
+label .lbl-icon {
+  width: 22px; height: 22px;
+  background: #ede9ff;
+  border-radius: 6px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: #6c63ff;
+  font-size: 10px;
+}
+
+input {
+  width: 100%;
+  padding: 13px 18px;
+  background: #f5f5ff;
+  border: 2px solid #e0deff;
+  border-radius: 14px;
+  color: #1a1a3e;
+  font-family: 'Nunito', sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+  outline: none;
+  transition: all 0.22s ease;
+  -webkit-appearance: none;
+}
+
+input::placeholder {
+  color: #b0afd0;
+  font-weight: 500;
+}
+
+input:focus {
+  border-color: #6c63ff;
+  background: #fff;
+  box-shadow: 0 0 0 4px rgba(108,99,255,0.12);
+}
+
+input:valid:not(:placeholder-shown) {
+  border-color: #43e97b;
+  background: #f4fff8;
+}
+
+.two-col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  animation: slideIn 0.4s ease 0.23s both;
+}
+
+.sep {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 4px 0;
+}
+.sep-line { flex: 1; height: 1px; background: #ede9ff; }
+.sep-text { font-size: 11px; font-weight: 700; color: #c0bedf; text-transform: uppercase; letter-spacing: 1px; }
+
+.btn-submit {
+  width: 100%;
+  padding: 15px;
+  background: linear-gradient(135deg, #6c63ff, #9b59ff);
+  border: none;
+  border-radius: 16px;
+  color: #fff;
+  font-family: 'Nunito', sans-serif;
+  font-size: 15px;
+  font-weight: 800;
+  letter-spacing: 0.3px;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.2s, box-shadow 0.2s;
+  box-shadow: 0 6px 24px rgba(108,99,255,0.4);
+  animation: slideIn 0.4s ease 0.35s both;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 4px;
+}
+
+.btn-submit:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 32px rgba(108,99,255,0.5);
+}
+
+.btn-submit:active {
+  transform: translateY(0);
+}
+
+.btn-submit::after {
+  content: '';
+  position: absolute;
+  top: 0; left: -100%;
+  width: 60%; height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.25), transparent);
+  transform: skewX(-20deg);
+}
+.btn-submit:hover::after {
+  animation: shimmer 0.55s ease forwards;
+}
+@keyframes shimmer {
+  to { left: 150%; }
+}
+
+.btn-icon-circle {
+  width: 28px; height: 28px;
+  background: rgba(255,255,255,0.2);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+}
+
+.card-footer {
+  padding: 14px 36px 20px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border-top: 1px solid #f0eeff;
+}
+
+.card-footer i { color: #b0afd0; font-size: 11px; }
+.card-footer span { font-size: 12px; color: #b0afd0; font-weight: 600; }
+
+@media (max-width: 520px) {
+  .card-header, .card-body, .card-footer { padding-left: 22px; padding-right: 22px; }
+  .two-col { grid-template-columns: 1fr; }
+  .badge { display: none; }
+}
+
+</style>
 </head>
 <body>
-	<center>
-			<h1>
-				<u>Product Inventory</u><br>
-				<form action="aps" method="post">
-				Product code <input type="text" name="pcode"><br><br>
-				Product Name <input type="text" name="pname"><br><br>
-				Product Company <input type="text" name="pcomp"><br><br>
-				Product Price <input type="text" name="pprice"><br><br>
-				Product Qty <input type="text" name="pqty"><br><br>
-				<input type="submit" value="Add Product">
-				</form>
-				
-			</h1>
-		</center>
+
+<div class="blob blob-1"></div>
+<div class="blob blob-2"></div>
+<div class="blob blob-3"></div>
+
+<div class="card">
+
+  <div class="card-header">
+    <div class="badge">&#x2022; INVENTORY</div>
+    <div class="header-icon-wrap">
+      <i class="fas fa-warehouse"></i>
+    </div>
+    <h2>Add New Product</h2>
+    <p>Fill in the details to register a product</p>
+  </div>
+
+  <div class="card-body">
+    <form action="aps" method="post" style="display:contents;">
+
+      <div class="field-group">
+        <label><span class="lbl-icon"><i class="fas fa-barcode"></i></span> Product Code</label>
+        <input type="text" name="pcode" required placeholder="e.g. PRD-0042">
+      </div>
+
+      <div class="field-group">
+        <label><span class="lbl-icon"><i class="fas fa-box"></i></span> Product Name</label>
+        <input type="text" name="pname" required placeholder="Enter product name">
+      </div>
+
+      <div class="field-group">
+        <label><span class="lbl-icon"><i class="fas fa-industry"></i></span> Manufacturer</label>
+        <input type="text" name="pcomp" required placeholder="Company or brand">
+      </div>
+
+      <div class="sep">
+        <div class="sep-line"></div>
+        <span class="sep-text">Pricing &amp; Stock</span>
+        <div class="sep-line"></div>
+      </div>
+
+      <div class="two-col">
+        <div class="field-group" style="animation:none;">
+          <label><span class="lbl-icon"><i class="fas fa-dollar-sign"></i></span> Price</label>
+          <input type="number" name="pprice" step="0.01" min="0" required placeholder="0.00">
+        </div>
+        <div class="field-group" style="animation:none;">
+          <label><span class="lbl-icon"><i class="fas fa-layer-group"></i></span> Quantity</label>
+          <input type="number" name="pqty" min="0" required placeholder="0">
+        </div>
+      </div>
+
+      <button type="submit" class="btn-submit">
+        <span class="btn-icon-circle"><i class="fas fa-plus"></i></span>
+        Add to Inventory
+      </button>
+
+    </form>
+  </div>
+
+  <div class="card-footer">
+    <i class="fas fa-lock"></i>
+    <span>All fields required &mdash; data saved securely to inventory</span>
+  </div>
+
+</div>
+
 </body>
 </html>

@@ -1,14 +1,438 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ElectroHub — Online Electronic Portal</title>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --bg: #03060f;
+      --c1: #00f0ff;
+      --c2: #ff3cac;
+      --c3: #ffb800;
+      --surface: rgba(255,255,255,0.03);
+      --border: rgba(255,255,255,0.07);
+      --text: #f0f4ff;
+      --muted: #4a5578;
+    }
+
+    html, body {
+      height: 100%;
+      font-family: 'Outfit', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      overflow-x: hidden;
+    }
+
+    #bg-canvas {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+    }
+
+    .wrapper {
+      position: relative;
+      z-index: 2;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 40px 20px;
+    }
+
+    /* ── Chips ── */
+    .chip-row {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 32px;
+      animation: fadeDown 0.8s 0.1s both;
+    }
+    .chip {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 14px;
+      border-radius: 999px;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+    .chip-cyan { background: rgba(0,240,255,0.1); border: 1px solid rgba(0,240,255,0.25); color: var(--c1); }
+    .chip-pink { background: rgba(255,60,172,0.1); border: 1px solid rgba(255,60,172,0.25); color: var(--c2); }
+    .chip-dot { width: 6px; height: 6px; border-radius: 50%; background: currentColor; animation: blink 2s infinite; }
+    @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.3} }
+
+    /* ── Headline ── */
+    .headline-wrap {
+      text-align: center;
+      margin-bottom: 16px;
+      animation: fadeDown 0.8s 0.2s both;
+    }
+    h1 {
+      font-size: clamp(3rem, 9vw, 6.5rem);
+      font-weight: 900;
+      line-height: 1;
+      letter-spacing: -0.03em;
+    }
+    .line1 { color: var(--text); display: block; }
+    .line2 {
+      display: block;
+      background: linear-gradient(90deg, var(--c1) 0%, var(--c2) 50%, var(--c3) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      background-size: 200%;
+      animation: shimmer 4s linear infinite;
+    }
+    @keyframes shimmer {
+      0% { background-position: 0% }
+      100% { background-position: 200% }
+    }
+
+    .sub {
+      text-align: center;
+      color: var(--muted);
+      font-size: 16px;
+      font-weight: 400;
+      line-height: 1.7;
+      max-width: 400px;
+      margin: 0 auto 48px;
+      animation: fadeDown 0.8s 0.3s both;
+    }
+
+    /* ── Stats ── */
+    .stats {
+      display: flex;
+      margin-bottom: 52px;
+      animation: fadeDown 0.8s 0.35s both;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      overflow: hidden;
+      backdrop-filter: blur(20px);
+    }
+    .stat {
+      padding: 18px 36px;
+      text-align: center;
+      position: relative;
+    }
+    .stat + .stat::before {
+      content: '';
+      position: absolute;
+      left: 0; top: 20%; bottom: 20%;
+      width: 1px;
+      background: var(--border);
+    }
+    .stat-n {
+      font-family: 'Space Mono', monospace;
+      font-size: 26px;
+      font-weight: 700;
+    }
+    .stat-n.cyan { color: var(--c1); }
+    .stat-n.pink { color: var(--c2); }
+    .stat-n.gold { color: var(--c3); }
+    .stat-l { font-size: 11px; color: var(--muted); letter-spacing: 0.1em; text-transform: uppercase; margin-top: 4px; }
+
+    /* ── Ticker ── */
+    .ticker-wrap {
+      width: 100%;
+      max-width: 540px;
+      overflow: hidden;
+      -webkit-mask-image: linear-gradient(90deg, transparent, black 15%, black 85%, transparent);
+      mask-image: linear-gradient(90deg, transparent, black 15%, black 85%, transparent);
+      margin-bottom: 44px;
+      animation: fadeDown 0.8s 0.4s both;
+    }
+    .ticker {
+      display: flex;
+      gap: 10px;
+      animation: ticker 18s linear infinite;
+      width: max-content;
+    }
+    @keyframes ticker {
+      from { transform: translateX(0); }
+      to { transform: translateX(-50%); }
+    }
+    .ticker-item {
+      display: flex; align-items: center; gap: 8px;
+      padding: 8px 16px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      font-size: 12px;
+      color: var(--muted);
+      white-space: nowrap;
+      font-weight: 500;
+    }
+    .ticker-item span { font-size: 14px; }
+
+    /* ── Card ── */
+    .card {
+      width: 100%;
+      max-width: 500px;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 28px;
+      padding: 10px;
+      backdrop-filter: blur(30px);
+      animation: fadeUp 0.8s 0.45s both;
+      box-shadow:
+        0 0 0 1px rgba(0,240,255,0.05),
+        0 40px 80px rgba(0,0,0,0.6),
+        inset 0 1px 0 rgba(255,255,255,0.05);
+    }
+
+    /* ── Buttons ── */
+    .login-btn {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 20px 22px;
+      border-radius: 20px;
+      text-decoration: none;
+      color: var(--text);
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.3s cubic-bezier(0.16,1,0.3,1);
+    }
+    .login-btn::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      transition: opacity 0.3s;
+      border-radius: 20px;
+    }
+    .login-btn:hover { transform: translateY(-3px) scale(1.01); }
+    .login-btn:hover::before { opacity: 1; }
+    .login-btn:active { transform: scale(0.98); }
+
+    .btn-admin { background: linear-gradient(135deg, rgba(0,240,255,0.08), rgba(0,240,255,0.03)); border: 1px solid rgba(0,240,255,0.18); }
+    .btn-admin::before { background: linear-gradient(135deg, rgba(0,240,255,0.14), rgba(0,240,255,0.06)); }
+    .btn-admin:hover { border-color: rgba(0,240,255,0.4); box-shadow: 0 0 40px rgba(0,240,255,0.1), 0 12px 40px rgba(0,0,0,0.4); }
+
+    .btn-customer { background: linear-gradient(135deg, rgba(255,60,172,0.08), rgba(255,60,172,0.03)); border: 1px solid rgba(255,60,172,0.18); }
+    .btn-customer::before { background: linear-gradient(135deg, rgba(255,60,172,0.14), rgba(255,60,172,0.06)); }
+    .btn-customer:hover { border-color: rgba(255,60,172,0.4); box-shadow: 0 0 40px rgba(255,60,172,0.12), 0 12px 40px rgba(0,0,0,0.4); }
+
+    .btn-ico {
+      width: 52px; height: 52px;
+      border-radius: 14px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 22px;
+      flex-shrink: 0;
+      position: relative; z-index: 1;
+    }
+    .btn-admin .btn-ico { background: rgba(0,240,255,0.12); box-shadow: 0 0 20px rgba(0,240,255,0.2); }
+    .btn-customer .btn-ico { background: rgba(255,60,172,0.12); box-shadow: 0 0 20px rgba(255,60,172,0.2); }
+
+    .btn-info { flex: 1; position: relative; z-index: 1; }
+    .btn-title { font-size: 17px; font-weight: 700; letter-spacing: -0.01em; }
+    .btn-sub { font-size: 12px; color: var(--muted); margin-top: 3px; font-weight: 400; }
+
+    .btn-arrow {
+      width: 36px; height: 36px;
+      border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 16px;
+      flex-shrink: 0;
+      position: relative; z-index: 1;
+      transition: transform 0.3s, background 0.3s;
+    }
+    .btn-admin .btn-arrow { background: rgba(0,240,255,0.1); color: var(--c1); }
+    .btn-customer .btn-arrow { background: rgba(255,60,172,0.1); color: var(--c2); }
+    .login-btn:hover .btn-arrow { transform: translateX(4px) rotate(-5deg); }
+    .btn-admin:hover .btn-arrow { background: rgba(0,240,255,0.2); }
+    .btn-customer:hover .btn-arrow { background: rgba(255,60,172,0.2); }
+
+    .or-row {
+      display: flex; align-items: center; gap: 14px;
+      padding: 6px 10px;
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+    .or-row::before, .or-row::after {
+      content: ''; flex: 1; height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.07), transparent);
+    }
+
+    /* ── Footer ── */
+    .footer {
+      margin-top: 36px;
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      animation: fadeUp 0.8s 0.6s both;
+    }
+    .footer-item {
+      display: flex; align-items: center; gap: 6px;
+      font-size: 12px; color: var(--muted); font-weight: 500;
+    }
+    .footer-dot { width: 3px; height: 3px; border-radius: 50%; background: var(--muted); }
+
+    /* ── Animations ── */
+    @keyframes fadeDown {
+      from { opacity: 0; transform: translateY(-20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
 </head>
 <body>
-		<center>
-			<h1>Welcome to Online Electronic Portal</h1>
-			<a href="AdminLogin.html">Admin Login</a> <br><br>
-			<a href="CustomerLogin.html">Customer Login</a>
-		</center>
+
+<canvas id="bg-canvas"></canvas>
+
+<div class="wrapper">
+
+  <div class="chip-row">
+    <div class="chip chip-cyan"><span class="chip-dot"></span>Live Inventory</div>
+    <div class="chip chip-pink"><span class="chip-dot"></span>Secure Payments</div>
+  </div>
+
+  <div class="headline-wrap">
+    <h1>
+      <span class="line1">Online</span>
+      <span class="line2">Electronic Portal</span>
+    </h1>
+  </div>
+
+
+  
+
+  <div class="ticker-wrap">
+    <div class="ticker">
+      <div class="ticker-item"><span>📱</span> Smartphones</div>
+      <div class="ticker-item"><span>💻</span> Laptops</div>
+      <div class="ticker-item"><span>🎧</span> Headphones</div>
+      <div class="ticker-item"><span>📷</span> Cameras</div>
+      <div class="ticker-item"><span>⌚</span> Smartwatches</div>
+      <div class="ticker-item"><span>🖥️</span> Monitors</div>
+      <div class="ticker-item"><span>🎮</span> Gaming</div>
+      <div class="ticker-item"><span>🔌</span> Accessories</div>
+      <div class="ticker-item"><span>📱</span> Smartphones</div>
+      <div class="ticker-item"><span>💻</span> Laptops</div>
+      <div class="ticker-item"><span>🎧</span> Headphones</div>
+      <div class="ticker-item"><span>📷</span> Cameras</div>
+      <div class="ticker-item"><span>⌚</span> Smartwatches</div>
+      <div class="ticker-item"><span>🖥️</span> Monitors</div>
+      <div class="ticker-item"><span>🎮</span> Gaming</div>
+      <div class="ticker-item"><span>🔌</span> Accessories</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <a href="AdminLogin.html" class="login-btn btn-admin">
+      <div class="btn-ico">🛡️</div>
+      <div class="btn-info">
+        <div class="btn-title">Admin Login</div>
+        <div class="btn-sub">Manage products, orders &amp; users</div>
+      </div>
+      <div class="btn-arrow">→</div>
+    </a>
+
+    <div class="or-row">or</div>
+
+    <a href="CustomerLogin.html" class="login-btn btn-customer">
+      <div class="btn-ico">🛒</div>
+      <div class="btn-info">
+        <div class="btn-title">Customer Login</div>
+        <div class="btn-sub">Browse, buy &amp; track your orders</div>
+      </div>
+      <div class="btn-arrow">→</div>
+    </a>
+  </div>
+
+  <div class="footer">
+    <div class="footer-item">🔒 SSL Encrypted</div>
+    <div class="footer-dot"></div>
+    <div class="footer-item">✦ ElectroHub 2025</div>
+    <div class="footer-dot"></div>
+    <div class="footer-item">⚡ Always Online</div>
+  </div>
+
+</div>
+
+<script>
+  const canvas = document.getElementById('bg-canvas');
+  const ctx = canvas.getContext('2d');
+  let W, H, t = 0;
+
+  const blobs = [
+    { x: 0.82, y: 0.08, r: 0.5, color: '#00f0ff', speed: 0.0004 },
+    { x: 0.08, y: 0.88, r: 0.45, color: '#ff3cac', speed: 0.0006 },
+    { x: 0.5,  y: 0.5,  r: 0.35, color: '#7b4fff', speed: 0.0003 },
+  ];
+
+  const particles = Array.from({ length: 70 }, () => ({
+    x: Math.random(),
+    y: Math.random(),
+    size: Math.random() * 1.5 + 0.3,
+    speed: Math.random() * 0.00018 + 0.00005,
+    opacity: Math.random() * 0.5 + 0.08,
+    drift: (Math.random() - 0.5) * 0.00012,
+  }));
+
+  function resize() {
+    W = canvas.width = window.innerWidth;
+    H = canvas.height = window.innerHeight;
+  }
+  resize();
+  window.addEventListener('resize', resize);
+
+  function draw() {
+    ctx.clearRect(0, 0, W, H);
+    ctx.fillStyle = '#03060f';
+    ctx.fillRect(0, 0, W, H);
+
+    blobs.forEach(b => {
+      const ox = Math.sin(t * b.speed * 1.3 + b.x * 10) * 0.12;
+      const oy = Math.cos(t * b.speed + b.y * 8) * 0.1;
+      const grad = ctx.createRadialGradient(
+        (b.x + ox) * W, (b.y + oy) * H, 0,
+        (b.x + ox) * W, (b.y + oy) * H, b.r * Math.max(W, H)
+      );
+      grad.addColorStop(0, b.color + '28');
+      grad.addColorStop(0.5, b.color + '0a');
+      grad.addColorStop(1, 'transparent');
+      ctx.fillStyle = grad;
+      ctx.fillRect(0, 0, W, H);
+    });
+
+    // Grid
+    ctx.strokeStyle = 'rgba(0,240,255,0.028)';
+    ctx.lineWidth = 1;
+    const gs = 70;
+    for (let x = 0; x < W; x += gs) { ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, H); ctx.stroke(); }
+    for (let y = 0; y < H; y += gs) { ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(W, y); ctx.stroke(); }
+
+    // Particles
+    particles.forEach(p => {
+      p.y -= p.speed;
+      p.x += p.drift;
+      if (p.y < -0.01) { p.y = 1.01; p.x = Math.random(); }
+      if (p.x < 0 || p.x > 1) p.drift *= -1;
+      ctx.beginPath();
+      ctx.arc(p.x * W, p.y * H, p.size, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(180,220,255,${p.opacity})`;
+      ctx.fill();
+    });
+
+    t++;
+    requestAnimationFrame(draw);
+  }
+  draw();
+</script>
+
 </body>
 </html>
