@@ -1,0 +1,44 @@
+package com.nit.pack1;
+
+import java.io.IOException;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+@WebServlet("/update")
+public class UpdateProductServlet extends HttpServlet {
+	@Override
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
+		String id = req.getParameter("p_id");
+		String name = req.getParameter("p_name");
+		String price = req.getParameter("p_price");
+		String qty = req.getParameter("p_qty");
+		try {
+			Connection con = DBConnect.getConection();
+			PreparedStatement pstmt = con.prepareStatement("update productTest set PNAME=?, PPRICE=?, PQTY=? where PID =?");
+			pstmt.setString(1, name);
+			pstmt.setString(2, price);
+			pstmt.setString(3, qty);
+			pstmt.setString(4, id);
+
+			int rowCount = pstmt.executeUpdate();
+			if (rowCount > 0) {
+				req.setAttribute("msg", "Updated Sucessfully!!!");
+				req.getRequestDispatcher("Result.jsp").forward(req, resp);
+			} else {
+				req.setAttribute("msg", "Faild!!");
+				req.getRequestDispatcher("Result.jsp").forward(req, resp);
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+}
+
